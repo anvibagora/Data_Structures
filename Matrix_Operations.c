@@ -21,42 +21,39 @@ void display(int a[10][10], int m,int n){
 	}
 }
 
-void addition(int a[10][10], int b[10][10], int m, int n, int x, int y){
+void addition(int a[10][10], int b[10][10], int m, int n){
 	int c[10][10],i ,j;
-	if(x==m && y==n){
-		for(i=0; i<m; i++){
-			for(j=0; j<n; j++){
-				c[i][j] = a[i][j] + b[i][j];
-			}
+	for(i=0; i<m; i++){
+		for(j=0; j<n; j++){
+			c[i][j] = a[i][j] + b[i][j];
 		}
 	}
+	printf("\nResult of addition is \n");
 	display(c,m,n);
 }
 	
-void subtraction(int a[10][10], int b[10][10], int m, int n, int x, int y){
+void subtraction(int a[10][10], int b[10][10], int m, int n){
 	int c[10][10],i ,j;
-	if(x==m && y==n){
-		for(i=0; i<m; i++){
-			for(j=0; j<n; j++){
-				c[i][j] = a[i][j] - b[i][j];
-			}
+	for(i=0; i<m; i++){
+		for(j=0; j<n; j++){
+			c[i][j] = a[i][j] - b[i][j];
 		}
 	}
+	printf("\nResult of subtraction is \n");
 	display(c,m,n);
 }
 
-void multiplication(int a[10][10], int b[10][10], int m, int n, int x, int y){
+void multiplication(int a[10][10], int b[10][10], int m, int n, int y){
 	int c[10][10]={0},i ,j,k;
-	if(n==x){
-		for(i=0; i<m; i++){
-			for(j=0; j<y; j++){
-				c[i][j]=0;
-				for(k=0; k<n; k++){
-					c[i][j] += a[i][k] * b[k][j];
-				}	
-			}
+	for(i=0; i<m; i++){
+		for(j=0; j<y; j++){
+			c[i][j]=0;
+			for(k=0; k<n; k++){
+				c[i][j] += a[i][k] * b[k][j];
+			}	
 		}
 	}
+	printf("\nResult of multiplication is\n");	
 	display(c,m,y);
 }
 
@@ -67,6 +64,7 @@ void transpose(int a[10][10], int m, int n){
 			c[i][j] = a[j][i];
 		}
 	}
+	printf("\nTranspose is: \n");
 	display(c,m,n);
 }
 
@@ -77,7 +75,7 @@ int main(){
 	scanf("%d%d", &m, &n);
 	accept(a,m,n);
 	display(a,m,n);
-	printf("\nEnter number of rows and columns for matrices A: ");
+	printf("\nEnter number of rows and columns for matrices B: ");
 	scanf("%d%d", &x, &y);
 	accept(b,x,y);
 	display(b,x,y);
@@ -92,12 +90,28 @@ int main(){
 		scanf("%d",&ch);
 		
 		switch(ch){
-			case 1: addition(a,b,m,n,x,y);
+			case 1: 
+				if(m==x && n==y){
+					addition(a,b,m,n);
+				}else{
+					printf("\nERROR! dimentions are not equal therefore addition not possible");
+				}
 				break;
-			case 2: subtraction(a,b,m,n,x,y);
+			case 2: 
+				if(m==x && n==y){
+					subtraction(a,b,m,n);
+				}else{
+					printf("\nERROR! dimentions are not equal therefore addition not possible");
+				}
 				break;
-			case 3: multiplication(a,b,m,n,x,y);
+			case 3: 
+				if(n==x){
+					multiplication(a,b,m,n,y);
+				}else{
+					printf("\nERROR! dimentions are not equal therefore addition not possible");
+				}
 				break;
+
 			case 4: transpose(a,m,n);
 				break;
 			case 5: exit(0);
@@ -105,5 +119,5 @@ int main(){
 			default: printf("ERROR! Operation does not exist!");
 		}
 	
-}
+	}
 }
