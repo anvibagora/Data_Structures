@@ -23,7 +23,7 @@ void display(int a[10][10], int m,int n){
 }
 
 int main(){
-	int a[10][10],b[10][10],c[10][10],m,n,i,j,k,q;
+	int a[10][10],b[10][10],c[10][10],d[10][10],m,n,i,j,k,q;
 	printf("\nEnter number of rows and columns for sparse matrix: ");
 	scanf("%d%d", &m, &n);
 	accept(a,m,n);
@@ -56,7 +56,7 @@ int main(){
 		c[0][0]=b[0][1];
 		c[0][1]=b[0][0];
 		c[0][2]=b[0][2];
-		printf("Transpose of compact form of sparse matrix is: ");
+		printf("Transpose of compact form of sparse matrix by Simple Transpose is: ");
 		q=1;
 		for(int col=0;col<n;col++){
 			for(int p=1;p<=t;p++){
@@ -70,5 +70,37 @@ int main(){
 		}
 	}
 	display(c,q,3);
+	
+	//Fast Transpose
+	//s[n] is array for frequency of column number
+	//t[n] is array to store index at which they start storing in transpose
+	int S[n],T[n];
+	d[0][0]=b[0][1];
+	d[0][1]=b[0][0];
+	d[0][2]=b[0][2];
+	if(t<=0){
+		printf("ERROR! transpose cannot be performed!");
+		exit(0);
+	}else{
+		for(i=0;i<n;i++){
+			S[i]=0;
+		}
+		for(i=0;i<=t;i++){
+			S[b[i][1]]=S[b[i][1]]+1;
+		}
+		T[0]=1;
+		for(i=1;i<n;i++){
+			T[i]=T[i-1]+S[i-1];
+		}
+		for(i=0;i<=t;i++){
+			j=b[i][1];
+			d[T[j]][0] = b[i][1];
+			d[T[j]][1] = b[i][0];
+			d[T[j]][2] = b[i][2];
+			T[j]=T[j]+1;
+		}
+	}
+	printf("Transpose of compact form of sparse matrix by Fast Transpose is: ");
+	display(d,q,3);
 	return 0;
 }
