@@ -23,29 +23,30 @@ void display(int a[10][10], int m,int n){
 }
 
 int main(){
-	int a[10][10],b[10][10],c[10][10],d[10][10],m,n,i,j,k,q;
+	int a[10][10],b[10][10],c[10][10],d[10][10],m,n,i,j,k,q,t1,t2;
 	printf("\nEnter number of rows and columns for sparse matrix: ");
 	scanf("%d%d", &m, &n);
 	accept(a,m,n);
 	display(a,m,n);
 	
 	//Sparse matrix to compact form
-    	b[0][0]=m;
-    	b[0][1]=n;
-    	k=0;
-    	for(i=0;i<m;i++){
-        	for(j=0;j<n;j++){
-           		if(a[i][j]!=0){
-               		 k++;
-                	b[k][0]=i;
-                	b[k][1]=j;
-                	b[k][2]=a[i][j];
-            		}
-        	}
-    	}
-    	b[0][2]=k;
+    b[0][0]=m;
+	b[0][1]=n;
+	k=0;
+    for(i=0;i<m;i++){
+    	for(j=0;j<n;j++){
+           	if(a[i][j]!=0){
+           		 k++;
+            	b[k][0]=i;
+            	b[k][1]=j;
+            	b[k][2]=a[i][j];
+            	}
+        }
+    }
+	b[0][2]=k;
+	t1=b[0][2];
 	printf("\nCompact form of the sparse matric is");
-   	 display(b,k+1,3);
+  	display(b,k+1,3);
 
 	//Simple transpose of compact form
 	int t = b[0][2];
@@ -102,5 +103,98 @@ int main(){
 	}
 	printf("Transpose of compact form of sparse matrix by Fast Transpose is: ");
 	display(d,q,3);
+	
+
+	//Addition of two matrices
+	int e[10][10],x,y;
+	printf("For addition enter dimentions of other matrix: ");
+	scanf("%d%d", &x, &y);
+	accept(e,x,y);
+	display(e,x,y);
+
+	int f[10][10];
+	f[0][0]=m;
+	f[0][1]=n;
+	k=0;
+    for(i=0;i<x;i++){
+    	for(j=0;j<y;j++){
+       		if(e[i][j]!=0){
+               	k++;
+            	f[k][0]=i;
+            	f[k][1]=j;
+            	f[k][2]=e[i][j];
+    		}
+    	}
+	}
+    f[0][2]=k;
+	t2=f[0][2];
+   	display(f,k+1,3);
+
+	if(b[0][0]!=f[0][0] || b[0][1]!=f[0][1]){
+		printf("ERROR! Dimentions not equal! Addition not possible!");
+		exit(0);
+	}
+
+	int g[10][10];
+	g[0][0]=b[0][0];
+	g[0][1]=b[0][1];
+	i=j=k=1;
+	while(i<=t1 && j<=t2){
+		if(b[i][0]==f[j][0]){
+			if(b[i][1]==f[j][1]){
+				int temp = b[i][2]+f[j][2];
+				if(temp!=0){
+					g[k][0]=b[i][0];
+					g[k][1]=b[i][1];
+					g[k][2]=b[i][2];
+					k++;
+					i++;
+					j++;
+				}
+			}else if(b[i][1]<f[j][1]){
+					g[k][0]=b[i][0];
+					g[k][1]=b[i][1];
+					g[k][2]=b[i][2];
+					k++;
+					i++;
+			}else if(b[i][1]>f[j][1]){
+					g[k][0]=f[j][0];
+					g[k][1]=f[j][1];
+					g[k][2]=f[j][2];
+					k++;
+					j++;
+			}
+		}else if(b[i][0]<f[j][0]){
+			g[k][0]=b[i][0];
+			g[k][1]=b[i][1];
+			g[k][2]=b[i][2];
+			k++;
+			i++;
+		}else if(b[i][0]>f[j][0]){
+			g[k][0]=f[j][0];
+			g[k][1]=f[j][1];
+			g[k][2]=f[j][2];
+			k++;
+			j++;
+		}
+	}
+	while(i<=t1){
+		g[k][0]=b[i][0];
+		g[k][1]=b[i][1];
+		g[k][2]=b[i][2];
+		k++;
+		i++;
+	}
+	while(j<=t2){
+		g[k][0]=f[j][0];
+		g[k][1]=f[j][1];
+		g[k][2]=f[j][2];
+		k++;
+		j++;
+	}
+	g[0][2]=k-1;
+	printf("\nResult of addition: ");
+	display(g,k,3);
+
 	return 0;
 }
