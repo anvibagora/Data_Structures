@@ -1,4 +1,4 @@
-//CORRECTIONS ARE NEEDED
+//A LOT OF CORRECTIONS ARE NEEDED
 
 #include <stdio.h>
 #include <stdlib.h>
