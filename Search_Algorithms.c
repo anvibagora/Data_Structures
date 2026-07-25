@@ -1,4 +1,4 @@
-//CORRECTIONS ARE NEEDED
+//CORRECTIONS ARE NEEDED....GOTTA PRINT THE OUTPUT AS WELL
 
 #include <stdio.h>
 #include <stdlib.h>
