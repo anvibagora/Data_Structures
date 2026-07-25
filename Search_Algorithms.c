@@ -61,7 +61,7 @@ int main(){
 
     printf("The array is: ");
     for(i=0;i<n;i++){
-        printf("%d ",&a[i]);
+        printf("%d ",a[i]);
     }
 
     printf("\nEnter element to find: ");
