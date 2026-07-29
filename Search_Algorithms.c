@@ -29,9 +29,7 @@ int linear(int array[100], int target, int n){
     }
 }
 
-int binary(int array[100], int key, int n){
-    int low=0;
-    int high = n-1;
+int binary_nonrecursive(int array[100], int key, int low, int high){
     int mid, flag;
     while(low<=high){
         mid = (low+high)/2;
@@ -49,10 +47,29 @@ int binary(int array[100], int key, int n){
     }
 }
 
+int binary_recursive(int a[100],int low, int high, int key){
+    int mid;
+    if(low<=high){
+        mid=(low+high)/2;
+        if(a[mid]==key){
+            return mid;
+        }else if(key<a[mid]){
+            return binary_recursive(a, low, mid-1, key);
+        }else{
+            return binary_recursive(a, mid+1, high, key);
+        }
+    }else{
+        return -1;
+    }
+}
+
 int main(){
-    int a[100], n, i, key, ch;
+    int a[100], n, low, high, i, key, ch1, ch2, ch3;
     printf("Welcome! \nEnter number of elements: ");
     scanf("%d",&n);
+
+    low=0;
+    high=n-1;
 
     printf("Enter elements: ");
     for(i=0;i<n;i++){
@@ -67,25 +84,50 @@ int main(){
     printf("\nEnter element to find: ");
     scanf("%d",&key);
 
-    printf("Search Choices:\n1.Sentinel Search\n2.Linear Search\n3.Binary Search\n4.Exit\nChoice of Search: ");
-    scanf("%d",&ch);
-    while(1){
-        switch(ch){
-            case 1: 
-                sentinel(a, key, n);
-                break;
-            case 2: 
-                linear(a, key, n);
-                break;
-            case 3: 
-                binary(a, key, n);
-                break;
-            case 4: 
-                printf("Thank you !");
-                exit(0);
-            default: 
-                printf("\nERROR! Operation not available!");
-                break;
+    printf("\n1.Search\n2.Sort\n3.Exit\nEnter choice: ");
+    scanf("%d",&ch1);
+
+    switch(ch1){
+        case 1:
+            printf("Search Choices:\n1.Sentinel Search\n2.Linear Search\n3.Binary Non-Recirsive Search\n4.Binary Recirsive Search\n5.Exit\nEnter choice: ");
+            scanf("%d",&ch2);
+                switch(ch2){
+                    case 1: 
+                        sentinel(a, key, n);
+                        break;
+                    case 2: 
+                        linear(a, key, n);
+                        break;
+                    case 3: 
+                        binary_nonrecursive(a, key, low, high);
+                        break;
+                    case 4: 
+                        binary_recursive(a, low, high, key);
+                        break;
+                    case 5: 
+                        printf("Thank you !");
+                        exit(0);
+                    default: 
+                        printf("\nERROR! Operation not available!");
+                }
+            break;
+        case 2:
+            printf("Sort Choices:\n1.Bubble Search\n2.Selection Search\n3.Exit\nEnter choice: ");
+            scanf("%d",&ch3);
+                switch(ch3){
+                    case 1: 
+                        bubble(a, key, n);
+                        break;
+                    case 2: 
+                        selection(a, key, n);
+                        break;
+                    case 3: 
+                        printf("Thank you !");
+                        exit(0);
+                    default: 
+                        printf("\nERROR! Operation not available!");
+            break;
         }
     }
+    return 0;
 }
