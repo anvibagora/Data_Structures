@@ -63,6 +63,39 @@ int binary_recursive(int a[100],int low, int high, int key){
     }
 }
 
+void swap(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int bubble(int a[100], int n){
+    int i,j;
+    for(i=0;i<=n-1;i++){
+        for(j=0;j<=n-i-1;j++){
+            if(a[j]>a[j+1]){
+                swap(a[j],a[j+1]);
+            }
+        }
+    }
+    return a;
+}
+
+void selection(int a[100], int n){
+    int i,j,minpos;
+    for(i=0;i<=n-2;i++){
+        minpos=i;
+        for(j=0;j<=n-1;j++){
+            if(a[j]<a[minpos]){
+                minpos=j;
+            }
+        }
+        if(minpos!=i){
+            swap(a[i],a[minpos]);
+        }
+    }
+}
+
 int main(){
     int a[100], n, low, high, i, key, ch1, ch2, ch3;
     printf("Welcome! \nEnter number of elements: ");
@@ -116,10 +149,10 @@ int main(){
             scanf("%d",&ch3);
                 switch(ch3){
                     case 1: 
-                        bubble(a, key, n);
+                        bubble(a,n);
                         break;
                     case 2: 
-                        selection(a, key, n);
+                        selection(a,n);
                         break;
                     case 3: 
                         printf("Thank you !");
