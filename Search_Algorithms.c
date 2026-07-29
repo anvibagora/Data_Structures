@@ -120,18 +120,15 @@ int main(){
     }
 
     printf("The array is: ");
-    for(i=0;i<n;i++){
-        printf("%d ",a[i]);
-    }
-
-    printf("\nEnter element to find: ");
-    scanf("%d",&key);
+    display(a,n);
 
     printf("\n1.Search\n2.Sort\n3.Exit\nEnter choice: ");
     scanf("%d",&ch1);
 
     switch(ch1){
         case 1:
+            printf("\nEnter element to find: ");
+            scanf("%d",&key);
             printf("Search Choices:\n1.Sentinel Search\n2.Linear Search\n3.Binary Non-Recirsive Search\n4.Binary Recirsive Search\n5.Exit\nEnter choice: ");
             scanf("%d",&ch2);
                 switch(ch2){
