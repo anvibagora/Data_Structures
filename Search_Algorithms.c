@@ -3,6 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void display(int a[100], int n){
+	int i;
+	for(i=0; i<n; i++){
+		printf("\t%d",a[i]);
+	}
+	printf("\n");
+}
+
 int sentinel(int array[100], int key, int n){
     array[n]=key;
     int i=0;
@@ -10,7 +18,7 @@ int sentinel(int array[100], int key, int n){
         i++;
     }
     if(i<n){
-        return i;
+    printf("Target found at index %d",i);
     }else{
         return -1;
     }
@@ -20,8 +28,7 @@ int linear(int array[100], int target, int n){
     int i;
     for(i=0;i<n;i++){
         if(array[i]==target){
-            printf("\nTarget data found!");
-            return i;
+            printf("\nTarget data found at index %d",i);
         }
     }
     if(i>=n){
@@ -35,7 +42,7 @@ int binary_nonrecursive(int array[100], int key, int low, int high){
         mid = (low+high)/2;
         if(array[mid]==key){
             flag=1;
-            return flag;
+            printf("Target found at index %d",mid);
         }else if(key<array[mid]){
             high=mid-1;
         }else{
@@ -43,7 +50,7 @@ int binary_nonrecursive(int array[100], int key, int low, int high){
         }
     }
     if(flag==0){
-        return flag;
+        printf("Target not found");
     }
 }
 
@@ -52,7 +59,7 @@ int binary_recursive(int a[100],int low, int high, int key){
     if(low<=high){
         mid=(low+high)/2;
         if(a[mid]==key){
-            return mid;
+            printf("Target found at index %d",mid);
         }else if(key<a[mid]){
             return binary_recursive(a, low, mid-1, key);
         }else{
@@ -78,6 +85,8 @@ int bubble(int a[100], int n){
             }
         }
     }
+    printf("Arranged Array:");
+    display(a,n);
 }
 
 void selection(int a[100], int n){
@@ -93,6 +102,8 @@ void selection(int a[100], int n){
             swap(a[i],a[minpos]);
         }
     }
+    printf("Arranged Array:");
+    display(a,n);
 }
 
 int main(){
