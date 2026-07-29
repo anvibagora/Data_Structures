@@ -78,7 +78,6 @@ int bubble(int a[100], int n){
             }
         }
     }
-    return a;
 }
 
 void selection(int a[100], int n){
@@ -94,7 +93,6 @@ void selection(int a[100], int n){
             swap(a[i],a[minpos]);
         }
     }
-    return a;
 }
 
 int main(){
