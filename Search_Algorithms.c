@@ -94,6 +94,7 @@ void selection(int a[100], int n){
             swap(a[i],a[minpos]);
         }
     }
+    return a;
 }
 
 int main(){
