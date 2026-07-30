@@ -106,6 +106,21 @@ void selection(int a[100], int n){
     display(a,n);
 }
 
+void insertion(int a[100], int n){
+    int i,j,key;
+    for(i=1;i<n;i++){
+        key = a[i];
+        j=i-1;
+        while(j>=0 && a[i]>key){
+            a[j+1]=a[j];
+            j--;
+        }
+        a[j+1]=key;
+    }
+}
+
+void
+
 int main(){
     int a[100], n, low, high, i, key, ch1, ch2, ch3;
     printf("Welcome! \nEnter number of elements: ");
