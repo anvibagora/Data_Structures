@@ -119,7 +119,21 @@ void insertion(int a[100], int n){
     }
 }
 
-void
+void shell(int a[100], int n){
+    int i, gap, swapped;
+    gap=n/2;
+    do{
+        do{
+            swapped=0;
+            for(i=0;i<n-gap;i++){
+                if(a[i]>a[i+gap]){
+                    swap(a[i],a[i+gap]);
+                    swapped=1;
+                }
+            }
+        }while(swapped==1);
+    }while((gap=gap/2)==1);
+}
 
 int main(){
     int a[100], n, low, high, i, key, ch1, ch2, ch3;
