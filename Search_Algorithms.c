@@ -181,7 +181,7 @@ int main(){
                 }
             break;
         case 2:
-            printf("Sort Choices:\n1.Bubble Search\n2.Selection Search\n3.Exit\nEnter choice: ");
+            printf("Sort Choices:\n1.Bubble Search\n2.Selection Search\n3.Insertion Search\n4.Shell Search\n5.Exit\nEnter choice: ");
             scanf("%d",&ch3);
                 switch(ch3){
                     case 1: 
@@ -191,6 +191,12 @@ int main(){
                         selection(a,n);
                         break;
                     case 3: 
+                        insertion(a,n);
+                        break;
+                    case 4: 
+                        shell(a,n);
+                        break;
+                    case 5: 
                         printf("Thank you !");
                         exit(0);
                     default: 
