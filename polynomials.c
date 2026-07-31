@@ -75,3 +75,34 @@ void polyadd(struct poly p1[100], struct poly p2[100], int max1, int max2){
     }
 }
 
+void polymultiplication(struct poly p1[100], struct poly p2[100], int max1, int max2){
+    int i=0,j=0,k=0;
+    int temp,flag,exp,x;
+    struct poly p3[100];
+    while(i<max1){
+        j=0;
+        while(j<max2){
+            temp=p1[i].coef*p2[j].coef;
+            if(temp!=0){
+                flag=0;
+                exp=p1[i].exp+p2[j].exp;
+                for(x=0;x<k;x++){
+                    if(exp==p3[x].exp){
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag==1){
+                    p3[x].coef=p3[x].coef+temp;
+                    j++;
+                }else{
+                    p3[k].exp=exp;
+                    p3[k].coef=temp;
+                    j++;
+                    k++;
+                }
+            }
+        }
+        i++;
+    }
+}
