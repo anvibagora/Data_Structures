@@ -7,7 +7,7 @@ struct poly{
 };
 
 int main(){
-    int max1,max2,i;
+    int max1,max2,i,x;
     struct poly p1[100],p2[100],p3[100];
     printf("Number of terms in 1st polynomial: ");
     scanf("%d",&max1);
@@ -25,10 +25,21 @@ int main(){
         printf("Exponential: ");
         scanf("%d",&p2[i].exp);
     }
+    printf("Value of x: ");
+    scanf("%d",&x);
     
 }
 
-void polydd(struct poly p1[100], struct poly p2[100], int max1, int max2){
+void polyeval(struct poly p[100], int max1, int x){
+    int sum=0;
+    int i;
+    for(i=0;i<=max1;i++){
+        sum += p[i].coef*pow(x,p[i].exp);
+    }
+    return sum;
+}
+
+void polyadd(struct poly p1[100], struct poly p2[100], int max1, int max2){
     int i=0,j=0,k=0;
     int temp;
     struct poly p3[100];
@@ -63,3 +74,4 @@ void polydd(struct poly p1[100], struct poly p2[100], int max1, int max2){
         j++;
     }
 }
+
