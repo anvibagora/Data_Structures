@@ -49,9 +49,9 @@ int binarySearchName(Student arr[], int size, char target[]) {
 void bubbleSort(Student arr[], int size, int sortByPrn) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
-            int condition = sortByPrn 
-                ? (arr[j].prn > arr[j + 1].prn) 
-                : (strcmp(arr[j].name, arr[j + 1].name) > 0);
+            int condition = sortByPrn; 
+                (arr[j].prn > arr[j + 1].prn); 
+                (strcmp(arr[j].name, arr[j + 1].name) > 0);
             
             if (condition) {
                 Student temp = arr[j];
@@ -66,9 +66,9 @@ void selectionSort(Student arr[], int size, int sortByPrn) {
     for (int i = 0; i < size - 1; i++) {
         int minIdx = i;
         for (int j = i + 1; j < size; j++) {
-            int condition = sortByPrn 
-                ? (arr[j].prn < arr[minIdx].prn) 
-                : (strcmp(arr[j].name, arr[minIdx].name) < 0);
+            int condition = sortByPrn; 
+                (arr[j].prn < arr[minIdx].prn); 
+                (strcmp(arr[j].name, arr[minIdx].name) < 0);
             
             if (condition) minIdx = j;
         }
